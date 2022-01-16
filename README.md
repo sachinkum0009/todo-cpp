@@ -2,6 +2,10 @@
 
 cli for todo
 
+## Action Workflow
+
+![Build C++](https://github.com/sachinkum0009/todo-cpp/actions/workflows/build.yml/badge.svg)
+
 ## Usage
 
 ```bash
