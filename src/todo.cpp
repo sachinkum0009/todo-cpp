@@ -1,60 +1,28 @@
 #include "todo.hpp"
-todo::Todo::Todo(FileType fileType) {
-    switch (fileType)
-    {
-    case APPEND:
-        file.open(FILE_NAME,std::ios_base::app);
-        break;
+#include <iostream>
+#include <cstdio>
 
-    case READ:
-        file.open(FILE_NAME,std::ios_base::in);
-        break;
 
-    case WRITE:
-        file.open(FILE_NAME,std::ios_base::out);
-        break;
-    
-    default:
-        break;
+namespace todo {
+    Todo::Todo() {
+        std::cout << "todo constructor called" << std::endl;
     }
-    if(!file){
-        printf("failed to open file\n");
-        exit(1);
+    Todo::~Todo() {
+        std::cout << "todo destructor called" << std::endl;
     }
-};
-todo::Todo::~Todo() {
-    file.close();
-};
-
-void todo::Todo::saveTodo(const char* value) {
-    file << value << "\n";
-};
-
-void todo::Todo::listTodo(){
-    if (file.is_open()){
-        index=0;
-        while (std::getline(file,line)){
-            ++index;
-            printf("%d. %s\n",index, line.c_str());
+    void Todo::console(void) {
+    // while (true) {
+        std::cout << "$ " ;
+        std::cin >> command;
+        if (command == 'a'){
+            std::cout << "Enter Task Name: ";
+            std::cin >> taskName;
+            std::cout << "Enter Task Description: ";
+            std::cin >> taskDescription;
+            printf("%s", taskDescription.c_str());
+            // std::cout << taskName << " : " << taskDescription << std::endl;
+            
         }
-    }
+    // };
 }
-
-void todo::Todo::deleteTodo(int index){
-    std::string line;
-
-    
-    int _index = 0;
-    while (std::getline(file,line)){
-        ++_index;
-        if (_index == index){
-            line.replace(line.begin(),line.end(), "ok");
-            printf("%s\n", line.c_str());
-            printf("done\n");
-
-            // file << line << "\n";
-        }
-
-    }
-
 }
